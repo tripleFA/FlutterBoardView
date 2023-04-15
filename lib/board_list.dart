@@ -108,7 +108,9 @@ class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin
             }
           },
           child: Container(
-            color: widget.headerBackgroundColor,
+
+            decoration: BoxDecoration( color: widget.headerBackgroundColor,borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))),
+
             child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -207,16 +209,16 @@ class BoardListState extends State<BoardList> with AutomaticKeepAliveClientMixin
     widget.boardView!.listStates.insert(widget.index!, this);
 
     return Card(
-        elevation: 10,
+      elevation: 10,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
         margin: EdgeInsets.all(8),
         color: backgroundColor,
-
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: listWidgets as List<Widget>,
         ));
+  }
 }
