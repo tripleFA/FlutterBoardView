@@ -3,11 +3,11 @@ library boardview;
 import 'dart:math';
 
 import 'package:boardview/boardview_controller.dart';
+import 'package:boardview/vs_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:core';
 import 'package:boardview/board_list.dart';
-import 'package:vs_scrollbar/vs_scrollbar.dart';
 
 class BoardView extends StatefulWidget {
   final List<BoardList>? lists;
@@ -300,9 +300,7 @@ class BoardViewState extends State<BoardView> with AutomaticKeepAliveClientMixin
 
   @override
   Widget build(BuildContext context) {
-    print("dy:${dy}");
-    print("topListY:${topListY}");
-    print("bottomListY:${bottomListY}");
+
     if(boardViewController.hasClients) {
       WidgetsBinding.instance!.addPostFrameCallback((Duration duration) {
         try {
@@ -316,6 +314,9 @@ class BoardViewState extends State<BoardView> with AutomaticKeepAliveClientMixin
         }
       });
     }
+
+
+
     Widget listWidget = ListView.builder(
       physics: ClampingScrollPhysics(),
       itemCount: widget.lists!.length,
