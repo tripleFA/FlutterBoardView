@@ -70,7 +70,6 @@ class VsScrollbar extends StatefulWidget {
     this.style = _kScrollbarStyle,
     this.scrollbarFadeDuration,
     this.scrollbarTimeToFade,
-    this.isAlwaysShown,
     this.showTrackOnHover,
     this.notificationPredicate,
   }) : super(key: key);
@@ -81,8 +80,6 @@ class VsScrollbar extends StatefulWidget {
   /// {@macro flutter.widgets.VsScrollbar.controller}
   final ScrollController? controller;
 
-  /// {@macro flutter.widgets.VsScrollbar.isAlwaysShown}
-  final bool? isAlwaysShown;
 
   /// If this property is null, then [ScrollbarThemeData.showTrackOnHover] of
   /// [ThemeData.scrollbarTheme] is used. If that is also null, the default value
@@ -111,7 +108,6 @@ class _ScrollbarState extends State<VsScrollbar> {
     return _MaterialScrollbar(
       child: widget.child,
       controller: widget.controller,
-      isAlwaysShown: widget.isAlwaysShown,
       showTrackOnHover: widget.showTrackOnHover,
       hoverThickness: widget.style.hoverThickness,
       thickness: widget.style.thickness,
@@ -127,7 +123,6 @@ class _MaterialScrollbar extends RawScrollbar {
     Key? key,
     required Widget child,
     ScrollController? controller,
-    bool? isAlwaysShown,
     this.showTrackOnHover,
     this.hoverThickness,
     this.color,
@@ -140,7 +135,6 @@ class _MaterialScrollbar extends RawScrollbar {
     key: key,
     child: child,
     controller: controller,
-    isAlwaysShown: isAlwaysShown,
     thickness: thickness,
     radius: radius,
     fadeDuration: scrollbarFadeDuration ?? _kScrollbarFadeDuration,
@@ -169,9 +163,6 @@ class _MaterialScrollbarState extends RawScrollbarState<_MaterialScrollbar> {
   // On Android, scrollbars should match native appearance.
   late bool _useAndroidScrollbar;
 
-  @override
-  bool get showScrollbar =>
-      widget.isAlwaysShown ?? _scrollbarTheme.isAlwaysShown ?? false;
 
   bool get _showTrackOnHover =>
       widget.showTrackOnHover ?? _scrollbarTheme.showTrackOnHover ?? false;
